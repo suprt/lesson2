@@ -23,6 +23,35 @@ func main() {
 
 }
 
+/*
+Итого программа выводит
+Case 1
+	without:
+<nil>
+Default error
+	with:
+<nil>
+Default error
+
+
+Case 2
+	without:
+<nil>
+Default error
+	with:
+Extra error
+Extra error
+
+
+Case 3
+	without:
+<nil>
+Default error
+	with:
+First Error
+First Error
+*/
+
 func case1() {
 	helperWithDefer := func(isError bool) error {
 		var retVal error
