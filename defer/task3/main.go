@@ -98,6 +98,34 @@ func case2() {
 	fmt.Println(helperWithDefer(true))
 }
 
+/*
+Как я думал - поведение аналогично case1
+будет
+
+	without:
+
+<nil>
+Default error
+
+	with:
+
+<nil>
+Default error
+
+Как вышло - поведение отличается, вывод
+
+	without:
+
+<nil>
+Default error
+
+	with:
+
+Extra error
+Extra error
+Почему я ошибся - я думал, что defer выполняется после выхода из функции.
+На самом деле он выполняется после return и может влиять на именованные возвращаемые параметры
+*/
 func case3() {
 	helperWithDefer := func(isError bool) (retVal error) {
 		defer func() {
