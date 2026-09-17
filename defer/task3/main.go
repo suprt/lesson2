@@ -15,12 +15,12 @@ func main() {
 	case2()
 	println()
 	println()
-	/*
-		println("Case 3")
-		case3()
-		println()
-		println()
-	*/
+
+	println("Case 3")
+	case3()
+	println()
+	println()
+
 }
 
 func case1() {
@@ -100,32 +100,24 @@ func case2() {
 
 /*
 Как я думал - поведение аналогично case1
-будет
-
+вывод -
 	without:
-
 <nil>
 Default error
-
 	with:
-
 <nil>
 Default error
-
 Как вышло - поведение отличается, вывод
-
 	without:
-
 <nil>
 Default error
-
 	with:
-
 Extra error
 Extra error
 Почему я ошибся - я думал, что defer выполняется после выхода из функции.
-На самом деле он выполняется после return и может влиять на именованные возвращаемые параметры
+На самом деле он выполняется после return, либо же в момент выхода из функции, и может влиять на именованные возвращаемые параметры
 */
+
 func case3() {
 	helperWithDefer := func(isError bool) (retVal error) {
 		defer func() {
@@ -158,3 +150,16 @@ func case3() {
 	fmt.Println(helperWithDefer(false))
 	fmt.Println(helperWithDefer(true))
 }
+
+/*
+вывод -
+	without:
+<nil>
+Default error
+	with:
+First Error
+First Error
+
+Случай аналогичный case2 - defer изменяет именованный возвращаемый параметр,
+defer выполняются в LIFO порядке, поэтому выводится First Error
+*/
