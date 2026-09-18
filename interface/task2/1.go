@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 type MyError struct {
 	data string
@@ -18,6 +16,7 @@ func foo(i int) error {
 	}
 	return err
 }
+
 func main() {
 	err := foo(4)
 	if err != nil {
